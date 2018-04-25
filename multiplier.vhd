@@ -30,15 +30,22 @@ end component;
 --negative component to take two's compliment of a number 
 component negative is 
 	port(value: in std_logic_vector(15 downto 0);
-		neg: inout atd_logic_vector(15 downto 0));
+		neg: inout std_logic_vector(15 downto 0));
 end compnent;
-
+--signals to be used in the multiplier
 signal shifted: std_logic_vector(8 downto 0);
 signal hold: integer range -2 to 2 := 0;
+signal j: integer range 0 to 15;
 
 begin
-		
+	shifted <= B(7 downto 0) & "0";
+	product <= "0000000000000000";
 	
-	
+	loop1: for j in 0 to 15 loop
+							
+
+
+					
+	end loop;	
 
 end Behavior;
