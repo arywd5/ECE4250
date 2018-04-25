@@ -15,22 +15,27 @@ entity BoothMultiplier is
 end BoothMultiplier;
 
 architecture Behavior of BoothMultiplier is
+--add our 16 bit adder so we can implement it 
+component eight_bit_adder is 
+	port(A, B: in std_logic_vector(15 downto 0);		--inputs 
+		Ci: in std_logic;							--carry in 
+		S: out std_logic_vector(15 odwnto 0); 		--sum 
+		Co: out std_logic);
+end component;
+--raddix numbers component 
+component raddixNumbers is 
+	port(input: in std_logic_vector(2 downto 0);
+		output: out integer range -2 to 2);
+end component;
 
-
+signal shifted: std_logic_vector(8 downto 0);
+signal hold: integer range -2 to 2 := 0;
 
 begin
-	process(clk)
-	variable Z: std_logic_vector(15 downto 0);
-	variable s: std_logic;
-	begin
-		if clk'event and clk = '1'
-			m := "00000000" & B;
-			s := '0';
-
-
-
-
-		end if;
+		
+	
+	
+	
 	end process;
 
 end Behavior;
