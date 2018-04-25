@@ -27,6 +27,11 @@ component raddixNumbers is
 	port(input: in std_logic_vector(2 downto 0);
 		output: out integer range -2 to 2);
 end component;
+--negative component to take two's compliment of a number 
+component negative is 
+	port(value: in std_logic_vector(15 downto 0);
+		neg: inout atd_logic_vector(15 downto 0));
+end compnent;
 
 signal shifted: std_logic_vector(8 downto 0);
 signal hold: integer range -2 to 2 := 0;
@@ -35,7 +40,5 @@ begin
 		
 	
 	
-	
-	end process;
 
 end Behavior;
