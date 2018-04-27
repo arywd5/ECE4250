@@ -10,7 +10,6 @@ use IEEE.std_logic_unsigned.all;
 
 entity BoothMultiplier is
   port ( A, B: in std_logic_vector(7 downto 0);
-	clk: in std_logic;
 	Product: out std_logic_vector(15 downto 0));
 end BoothMultiplier;
 

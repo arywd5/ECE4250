@@ -17,10 +17,14 @@ signal one: std_logic_vector(15 downto 0);
 signal i: integer range 0 to 15 := 0;
 signal Cin, Cout: std_logic;
 begin
+process(value)
+	begin
 		one <= "0000000000000001";
 loop1:		for i in 0 to 15 loop
 			value(i) <= not value(i);
 		end loop;		
 		Cin <= '0';	
+	
+	end process;
 	ADD: eight_bit_adder port map(value, one, Cin, value, Cout);
 end behavior; 
