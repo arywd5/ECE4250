@@ -19,19 +19,19 @@ architecture Behavior of BoothMultiplier is
 component eight_bit_adder is 
 	port(A, B: in std_logic_vector(15 downto 0);		--inputs 
 		Ci: in std_logic;							--carry in 
-		S: out std_logic_vector(15 odwnto 0); 		--sum 
+		S: out std_logic_vector(15 downto 0); 		--sum 
 		Co: out std_logic);
 end component;
 --raddix numbers component 
 component raddixNumbers is 
 	port(input: in std_logic_vector(2 downto 0);
 	     	num: in std_logic_vector(7 downto 0);
-		output: out std_logic_vector(15 downto 0);
+		output: inout std_logic_vector(15 downto 0));
 end component;
 --negative component to take two's compliment of a number 
 component negative is 
 	port(value: inout std_logic_vector(15 downto 0));
-end compnent;
+end component;
 --signals to be used in the multiplier
 signal shifted: std_logic_vector(8 downto 0);
 signal hold: integer range -2 to 2 := 0;

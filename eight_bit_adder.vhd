@@ -1,22 +1,22 @@
 library IEEE;
-use std_logic_1164.all;
+use IEEE.std_logic_1164.all;
 
-entity eight_bit_adder is 							--entity of our 8bit adder 
+entity eight_bit_adder is 					--entity of our 8bit adder 
 	port(A, B: in std_logic_vector(15 downto 0);		--inputs 
-		Ci: in std_logic;							--carry in 
-		S: out std_logic_vector(15 odwnto 0); 		--sum 
-		Co: out std_logic);							--Carry out 
-end eight_bit_adder;								--end the entity 
+		Ci: in std_logic;				--carry in 
+		S: out std_logic_vector(15 downto 0); 		--sum 
+		Co: out std_logic);				--Carry out 
+end eight_bit_adder;						--end the entity 
 
 architecture behavior of eight_bit_adder is			--architecture 
 	
-component fullAdder									--add fullAdder component 
+component fullAdder						--add fullAdder component 
 	port(X, Y, Cin: in std_logic;
-			Cout, Sum: std_logic);
+			Cout, Sum: out std_logic);
 end component;
 
-signal C: std_logic_vector(15 downto 1);				--create signal for carry in and outs 
-begin 												--begin the adding 
+signal C: std_logic_vector(15 downto 1);			--create signal for carry in and outs 
+begin 								--begin the adding 
 
 	FA1: fullAdder port map(A(0), B(0), Ci, C(1), S(0));
 	FA2: fullAdder port map(A(1), B(1), C(1), C(2), S(1));
