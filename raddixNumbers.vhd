@@ -9,13 +9,13 @@ end raddixNumbers;
 
 architecture behavior of raddixNumbers is 
 component negative is 	     
-	port(value: inout std_logic_vector(15 downto 0));     
+	port(value: inout std_logic_vector(15 downto 0);
+		flag: in bit);     
 end component; 	
 signal nflag: bit; 
-begin 
-process(input)
+begin process(input)
 	begin
-	nflag <= '0';
+	nflag <= '1';
 	 output <= "0000000000000000";		--initialize output to all zeros 
 case1:	case input is
 	     	--when our input is zero we dont need to add anything to the output 
@@ -33,15 +33,15 @@ case1:	case input is
 	     	--shift left then take twos compliment 
 		when "100" =>
 			output(8 downto 1) <= num(7 downto 0);
-	     		nflag <= '1';
+	     		nflag <= '0';
 		--take twos compliment 
 	     	when "101" => 
 			output <= "00000000" & num(7 downto 0);
-	     		nflag <= '1';
+	     		nflag <= '0';
 	     	--same as case above 
 	     	when "110" => 
 			output <= "00000000" & num(7 downto 0);
-	     		nflag <= '1';
+	     		nflag <= '0';
 		--again output should be all zeros 
 	     	when "111" =>
 			output <= "0000000000000000";
@@ -49,7 +49,6 @@ case1:	case input is
 			output <= "0000000000000000";
 	end case;
 	end process; 
-	when  nflag = '1'
-		NEG1: negative port map(output);
+		NEG1: negative port map(output, nflag);
 	
 end behavior;
