@@ -4,7 +4,7 @@ use IEEE.numeric_bit.all;
 
 entity fullAdder is 
 	port(X, Y: in std_logic;
-		Cin: in std_logic; --inputs 
+		Cin, clk: in std_logic; --inputs 
 		flag: in bit;			
 		Sum: out std_logic;
 		Cout: out std_logic); --outputs 
@@ -12,7 +12,7 @@ end fullAdder;
 
 architecture behavior of fullAdder is 
 begin
-	process 
+	process(clk)
 	begin
 	if flag = '1' then 
 		Sum <= X xor Y xor Cin after 10ns;

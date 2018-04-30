@@ -4,7 +4,8 @@ use IEEE.std_logic_1164.all;
 entity raddixNumbers is 
 	port(input: in std_logic_vector(2 downto 0);
 	     num: in std_logic_vector(7 downto 0);
-			output: inout std_logic_vector(15 downto 0));
+		clk: in std_logic;
+		output: inout std_logic_vector(15 downto 0));
 end raddixNumbers;
 
 architecture behavior of raddixNumbers is 
@@ -13,7 +14,7 @@ component negative is
 		flag: in bit);     
 end component; 	
 signal nflag: bit; 
-begin process(input)
+begin process(clk)
 	begin
 	nflag <= '1';
 	 output <= "0000000000000000";		--initialize output to all zeros 
