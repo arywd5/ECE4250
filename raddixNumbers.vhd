@@ -12,9 +12,9 @@ architecture behavior of raddixNumbers is
 signal i: integer range 15 downto 0;
 signal fflag, done: bit;
 begin 
-	process(clk)
+	process(input)
 	begin
-	if clk'event and clk = '1' then 
+	--if clk'event and clk = '1' then 
 	fflag <= '0';						--flag to use when taking the two's compliment 
 	
 	output <= "0000000000000000";		--initialize output to all zeros 
@@ -67,7 +67,7 @@ begin
 		when others =>
 			output <= "0000000000000000";
 		end case;
-	end if;
+	--end if;
 	end process; 
 
 end behavior;
