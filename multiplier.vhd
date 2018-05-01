@@ -19,7 +19,7 @@ architecture Behavior of BoothMultiplier is
 component eight_bit_adder is 
 	port(A, B: in std_logic_vector(15 downto 0);		--inputs 
 		Ci: in std_logic;							--carry in 
-		flag: in bit;		
+		--flag: in bit;		
 		S: out std_logic_vector(15 downto 0); 		--sum 
 		Co: out std_logic);
 end component;
@@ -48,9 +48,10 @@ begin
 	X <= X(13 downto 0) & "00";
 	Y <= Y(11 downto 0) & "0000";
 	Z <= Z(9 downto 0) & "000000";
+	Cin <= '0';
 
-	A1: eight_bit_adder port map(W, X, Cin, '1',  hold1, Cout);
-	A2: eight_bit_adder port map(Y, Z, Cin, '1', hold2, Cout);
-	A3: eight_bit_adder port map(hold1, hold2, Cin, '1', product, Cout);
+	Add1: eight_bit_adder port map(W, X, Cin, hold1, Cout);
+	Add2: eight_bit_adder port map(Y, Z, Cin, hold2, Cout);
+	Add3: eight_bit_adder port map(hold1, hold2, Cin, product, Cout);
 		
 end Behavior;

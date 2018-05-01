@@ -13,22 +13,22 @@ end fullAdder;
 architecture behavior of fullAdder is 
 --XOR component 
 component xorGate is 
-	port(x, y: in bit;
-			z: out bit);
+	port(x, y: in std_logic;
+			z: out std_logic);
 end component;
 --AND component 
 component andGate is 
-	port(x, y: in bit;
-			z: out bit);
+	port(x, y: in std_logic;
+			z: out std_logic);
 end component;
 --OR component 
 component orGate is 
-	port(x, y: in bit;
-			z: out bit);
+	port(x, y: in std_logic;
+			z: out std_logic);
 end component;
-
+signal hold1, hold2, hold3, hold4: std_logic;
 begin
-signal hold1, hold2, hold3, hold4: bit;
+
 --	process(clk)
 --	begin
 --	if flag = '1' then 
@@ -39,7 +39,7 @@ signal hold1, hold2, hold3, hold4: bit;
 
 A1:		xorGate port map(X, Y, hold1);
 A2:		xorGate port map(hold1, Cin, Sum);
-A3: 	andGate port map(X, Y, hold1);
+A3: 		andGate port map(X, Y, hold1);
 A4:		andGate port map(X, Cin, hold2);
 A5:		andGate port map(Y, Cin, hold3);
 A6:		orGate  port map(hold1, hold2, hold4);

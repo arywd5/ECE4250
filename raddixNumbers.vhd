@@ -10,10 +10,13 @@ end raddixNumbers;
 
 architecture behavior of raddixNumbers is 
 signal i: integer range 15 downto 0;
-signal fflag: bit;
-begin process(clk)
+signal fflag, done: bit;
+begin 
+	process(clk)
 	begin
+	if clk'event and clk = '1' then 
 	fflag <= '0';						--flag to use when taking the two's compliment 
+	
 	output <= "0000000000000000";		--initialize output to all zeros 
 	case1:	case input is
 		--when our input is zero we dont need to add anything to the output 
@@ -32,7 +35,7 @@ begin process(clk)
 		when "100" =>
 			output(8 downto 1) <= num(7 downto 0);
 			for i in 0 to 15 loop 
-				if output(i) = '1' and fflag = '0' then 
+				if (output(i) = '1') and (fflag = '0') then 
 					fflag <= '1';
 				else 
 					output(i) <= not output(i);
@@ -42,8 +45,8 @@ begin process(clk)
 		when "101" => 
 			output <= "00000000" & num(7 downto 0);
 			for i in 0 to 15 loop  
-				if output(i) = '1' and fflag = '0' then 
-					fflag <= '1'
+				if (output(i) = '1') and (fflag = '0') then 
+					fflag <= '1';
 				else 
 					output(i) <= not output(i);
 				end if;
@@ -52,8 +55,8 @@ begin process(clk)
 		when "110" => 
 			output <= "00000000" & num(7 downto 0);
 			for i in 0 to 15 loop  
-				if output(i) = '1' and fflag = '0' then 
-					fflag <= '1'
+				if (output(i) = '1') and (fflag = '0') then 
+					fflag <= '1';
 				else 
 					output(i) <= not output(i);
 				end if;
@@ -64,6 +67,7 @@ begin process(clk)
 		when others =>
 			output <= "0000000000000000";
 		end case;
+	end if;
 	end process; 
 
 end behavior;
