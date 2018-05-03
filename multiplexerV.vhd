@@ -13,7 +13,7 @@ component multiplexer8 is
 	port(x0, x1, x2, x3, x4, x5, x6, x7: in std_logic;
 			s0, s1, s2: in std_logic;
 			out0: out std_logic);
-end comonent;
+end component;
 
 begin 
 

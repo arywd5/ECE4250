@@ -13,17 +13,16 @@ component multiplexer is
 			sel: in std_logic;
 			Z: out std_logic);
 end component;
-signal start: std_logic;
 begin 
-		start <= '0';		--first bit should be 0 when shifting left 
 	
-mux0:	multiplexer port map(start, invec(0), '1', outvec(0));
-mux1:	multiplexer port map(invec(0), invec(1), '1', outvec(1));	
-mux2:	multiplexer port map(invec(1), invec(2), '1', outvec(2));
-mux3:	multiplexer port map(invec(2), invec(3), '1', outvec(3));
-mux4:	multiplexer port map(invec(3), invec(4), '1', outvec(4));
-mux5:	multiplexer port map(invec(4), invec(5), '1', outvec(5));
-mux6:	multiplexer port map(invec(5), invec(6), '1', outvec(6));
-mux7:	multiplexer port map(invec(6), invec(7), '1', outvec(7));
+	
+mux0:	multiplexer port map('0', invec(0), '0', outvec(0));
+mux1:	multiplexer port map(invec(0), invec(1), '0', outvec(1));	
+mux2:	multiplexer port map(invec(1), invec(2), '0', outvec(2));
+mux3:	multiplexer port map(invec(2), invec(3), '0', outvec(3));
+mux4:	multiplexer port map(invec(3), invec(4), '0', outvec(4));
+mux5:	multiplexer port map(invec(4), invec(5), '0', outvec(5));
+mux6:	multiplexer port map(invec(5), invec(6), '0', outvec(6));
+mux7:	multiplexer port map(invec(6), invec(7), '0', outvec(7));
 
 end behavior;

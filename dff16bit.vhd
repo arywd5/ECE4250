@@ -2,7 +2,7 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 
 entity dff16bit is 
-	port(set, rst, clk: in std_logic
+	port(set, rst, clk: in std_logic;
 			d: in std_logic_vector(15 downto 0);
 			q: out std_logic_vector(15 downto 0));
 end dff16bit;

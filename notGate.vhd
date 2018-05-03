@@ -8,5 +8,5 @@ end notGate;
 
 architecture behavior of notGate is 
 	begin
-	y <= x;
+	y <= not x;
 end behavior;

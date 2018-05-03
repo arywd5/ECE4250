@@ -19,10 +19,10 @@ signal h1, h2, h3, h4, h5, h6: std_logic;
 
 begin
 
-m0:		multiplexer port map(x0, x1, s0, h1);
-m1:		multiplexer port map(x2, x3, s0, h2);
-m2:		multiplexer port map(x4, x5, s0, h3);
-m3:		multiplexer port map(x6, x7, s0, h4);
+m0:		multiplexer port map(x1, x0, s0, h1);
+m1:		multiplexer port map(x3, x2, s0, h2);
+m2:		multiplexer port map(x5, x4, s0, h3);
+m3:		multiplexer port map(x7, x6, s0, h4);
 m4:		multiplexer port map(h2, h1, s1, h5);
 m5:		multiplexer port map(h4, h3, s1, h6);
 m6:		multiplexer port map(h6, h5, s2, out0);

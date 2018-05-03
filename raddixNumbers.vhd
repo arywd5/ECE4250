@@ -5,7 +5,7 @@ entity raddixNumbers is
 port(input: in std_logic_vector(2 downto 0);
 		num: in std_logic_vector(7 downto 0);
 		Sumin: in std_logic_vector(7 downto 0);
-		output: out std_logic_vector(7 downto 0)
+		output: out std_logic_vector(7 downto 0);
 		product: out std_logic_vector(1 downto 0));
 end raddixNumbers;
 
@@ -23,7 +23,7 @@ end component;
 --FULL ADDER COMPONENT 
 component fullAdder is 
 	port(X, Y: in std_logic;
-			Cin, clk: in std_logic; --inputs 	
+			Cin: in std_logic; --inputs 	
 			Sum: out std_logic;
 			Cout: out std_logic); --outputs 
 end component;
@@ -51,7 +51,7 @@ signal shiftedNum, notNum, nsn, out0, sum1: std_logic_vector(7 downto 0);
 signal numZero: std_logic_vector(7 downto 0) := x"00";
 signal c0, c1, c2, c3,c4: std_logic;
 begin 
-step0:	bsl port map('1', num, shiftedNum);
+step0:	bsl port map(num, shiftedNum);
 step1:  not_eight_bit port map(num, notNum);
 step2:	not_eight_bit port map(shiftedNum, nsn);
 step3:	multiplexerV port map(numZero, nsn, num, notNum, num, notNum, shiftedNum, numZero, input(2), input(1), input(0), out0);

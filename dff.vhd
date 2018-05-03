@@ -11,7 +11,7 @@ begin
 	process(clk)
 	begin
 		if clk'event and clk = '1' then
-			if  = '1' then 
+			if set = '1' then 
 				if d = '1' then q <= '1';
 				elsif d = '0' then q <= '0';
 				end if;
