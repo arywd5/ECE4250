@@ -3,71 +3,34 @@ use IEEE.std_logic_1164.all;
 
 entity raddixNumbers is 
 port(input: in std_logic_vector(2 downto 0);
-num: in std_logic_vector(7 downto 0);
-clk: in std_logic;
-output: inout std_logic_vector(15 downto 0));
+		num: in std_logic_vector(7 downto 0);
+		Sumin: in std_logic_vector(7 downto 0);
+		output: out std_logic_vector(7 downto 0)
+		prod: out std_logic_vector(1 downto 0));
 end raddixNumbers;
 
 architecture behavior of raddixNumbers is 
-signal i: integer range 15 downto 0;
-signal fflag, done: bit;
+--BSL COMPONENT 
+component bsl is 
+	port(invec: in std_logic_vector(7 downto 0);
+			outvec:out std_logic_vector(7 downto 0));
+end component;
+--FULL ADDER COMPONENT 
+component fullAdder is 
+	port(X, Y: in std_logic;
+			Cin, clk: in std_logic; --inputs 	
+			Sum: out std_logic;
+			Cout: out std_logic); --outputs 
+end component;
+--EIGHT BIT ADDER COMPONENT 
+component eight_bit_adder is 
+	port(A, B: in std_logic_vector(7 downto 0);		--inputs 
+			Ci: in std_logic;				--carry in 	
+			S: out std_logic_vector(7 downto 0); 		--sum
+			Co: inout std_logic);	--carry out 
+end component;
+
+
 begin 
-	process(input)
-	begin
-	--if clk'event and clk = '1' then 
-	fflag <= '0';						--flag to use when taking the two's compliment 
-	
-	output <= "0000000000000000";		--initialize output to all zeros 
-	case1:	case input is
-		--when our input is zero we dont need to add anything to the output 
-		when "000" => 
-			output <= "0000000000000000";
-		--when our input is one our output stays the same as the input 
-		when "001" =>
-			output <= "00000000" & num(7 downto 0);
-		--same case as above 
-		when "010" =>
-			output <= "00000000" & num(7 downto 0);
-		--when 011 we need to multiple by two or shift left once
-		when "011" => 
-			output(8 downto 1) <= num(7 downto 0);
-		--shift left then take twos compliment 
-		when "100" =>
-			output(8 downto 1) <= num(7 downto 0);
-			for i in 0 to 15 loop 
-				if (output(i) = '1') and (fflag = '0') then 
-					fflag <= '1';
-				else 
-					output(i) <= not output(i);
-				end if;
-			end loop;
-		--take twos compliment 
-		when "101" => 
-			output <= "00000000" & num(7 downto 0);
-			for i in 0 to 15 loop  
-				if (output(i) = '1') and (fflag = '0') then 
-					fflag <= '1';
-				else 
-					output(i) <= not output(i);
-				end if;
-			end loop;
-		--same as case above 
-		when "110" => 
-			output <= "00000000" & num(7 downto 0);
-			for i in 0 to 15 loop  
-				if (output(i) = '1') and (fflag = '0') then 
-					fflag <= '1';
-				else 
-					output(i) <= not output(i);
-				end if;
-			end loop;
-		--again output should be all zeros 
-		when "111" =>
-			output <= "0000000000000000";
-		when others =>
-			output <= "0000000000000000";
-		end case;
-	--end if;
-	end process; 
 
 end behavior;
