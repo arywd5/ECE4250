@@ -7,8 +7,20 @@ entity halfAdder is
 		Sum, Cout: out std_logic);
 end halfAdder;
 
-architecture behavior of halfAdder is 
+architecture behavior of halfAdder is
+--Xor gate component 
+component xorGate is 
+	port(X, Y: in std_logic;
+			Z: out std_logic);
+end component;
+--and gate component 
+component andGate is 
+	port(X, Y: in std_logic;
+			Z: out std_logic);
+end component;
+
 begin 
-	Sum <= X xor Y;
-	Cout <= X and Y;
+xor1:	xorGate port map(X, Y, Sum);
+and1: 	andGate port map(X, Y, Cout);
+
 end behavior;

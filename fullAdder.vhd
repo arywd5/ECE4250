@@ -4,8 +4,7 @@ use IEEE.numeric_bit.all;
 
 entity fullAdder is 
 	port(X, Y: in std_logic;
-		Cin, clk: in std_logic; --inputs 
-	--	flag: in bit;			
+		Cin, clk: in std_logic; --inputs 	
 		Sum: out std_logic;
 		Cout: out std_logic); --outputs 
 end fullAdder;
@@ -28,14 +27,6 @@ component orGate is
 end component;
 signal hold1, hold2, hold3, hold4: std_logic;
 begin
-
---	process(clk)
---	begin
---	if flag = '1' then 
---		Sum <= X xor Y xor Cin after 10ns;
---		Cout <= (X and Y) or (X and Cin) or (Y and Cin) after 10 ns;
---	end if;
---	end process;
 
 A1:		xorGate port map(X, Y, hold1);
 A2:		xorGate port map(hold1, Cin, Sum);
