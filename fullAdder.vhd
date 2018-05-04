@@ -5,8 +5,8 @@ use IEEE.numeric_bit.all;
 entity fullAdder is 
 	port(X, Y: in std_logic;
 		Cin: in std_logic; --inputs 	
-		Sum: out std_logic;
-		Cout: out std_logic); --outputs 
+		Cout: out std_logic;
+		Sum: out std_logic); --outputs 
 end fullAdder;
 
 architecture behavior of fullAdder is 

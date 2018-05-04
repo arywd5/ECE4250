@@ -2,8 +2,8 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 
 entity multiplexer8 is 
-	port(	x0, x1, x2, x3, x4, x5, x6, x7: in std_logic;
-			s0, s1, s2: in std_logic;
+	port(x0, x1, x2, x3, x4, x5, x6, x7: in std_logic;
+			sel: in std_logic_vector(2 downto 0);
 			out0: out std_logic);
 end multiplexer8;
 
@@ -19,13 +19,13 @@ signal h1, h2, h3, h4, h5, h6: std_logic;
 
 begin
 
-m0:		multiplexer port map(x1, x0, s0, h1);
-m1:		multiplexer port map(x3, x2, s0, h2);
-m2:		multiplexer port map(x5, x4, s0, h3);
-m3:		multiplexer port map(x7, x6, s0, h4);
-m4:		multiplexer port map(h2, h1, s1, h5);
-m5:		multiplexer port map(h4, h3, s1, h6);
-m6:		multiplexer port map(h6, h5, s2, out0);
+m0:		multiplexer port map(x0, x1, sel(2), h1);
+m1:		multiplexer port map(x2, x3, sel(2), h2);
+m2:		multiplexer port map(x4, x5, sel(2), h3);
+m3:		multiplexer port map(x6, x7, sel(2), h4);
+m4:		multiplexer port map(h1, h2, sel(1), h5);
+m5:		multiplexer port map(h3, h4, sel(1), h6);
+m6:		multiplexer port map(h5, h6, sel(0), out0);
 
 
 end behavior;
