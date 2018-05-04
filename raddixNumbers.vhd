@@ -21,21 +21,7 @@ component not_eight_bit is
 	port(invec: in std_logic_vector(7 downto 0);
 			outvec: out std_logic_vector(7 downto 0));
 end component;
---FULL ADDER COMPONENT 
---component fullAdder is 
---	port(X, Y: in std_logic;
---			Cin: in std_logic; --inputs 	
---			Cout: out std_logic;
---			Sum: out std_logic); --outputs 
---end component;
---EIGHT BIT ADDER COMPONENT 
---component eight_bit_adder is 
----	port(A, B: in std_logic_vector(7 downto 0);		--inputs 
---			Ci: in std_logic;				--carry in 	
---			S: out std_logic_vector(7 downto 0); 		--sum
---			Co: inout std_logic);	--carry out 
---end component;
---MULTIPELXER EIGHT BIT COMPONENT 
+--8:1 multiplexer
 component multiplexer8 is 
 	port(x0, x1, x2, x3, x4, x5, x6, x7: in std_logic;
 			sel: in std_logic_vector(2 downto 0);
@@ -61,13 +47,5 @@ step2:		not_eight_bit port map(shiftedNum, nsn);
 step3:		multiplexerV port map(numZero, nsn, num, notNum, num, notNum, shiftedNum, numZero, input, output);
 step4:		multiplexer8 port map('0', '1', '0', '1', '0', '1', '0', '0', input, c0);
 step5:		multiplexer8 port map('0', notNum(7), num(7), notNum(7), num(7), notNum(7), num(7), '0', input, c1);
-
---step6:  	eight_bit_adder port map(Sumin, out0, c0, sum1, c2);
---step7:  	fullAdder port map(Sumin(7), c1, c2, c3, c4);
-
---		output(5 downto 0) <= sum1(7 downto 2);
---		output(7) <= c4;
---		output(6) <= c4;
---		product <= sum1(1 downto 0);
 
 end behavior;

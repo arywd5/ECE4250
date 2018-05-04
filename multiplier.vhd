@@ -16,7 +16,7 @@ entity BoothMultiplier is
 end BoothMultiplier;
 
 architecture Behavior of BoothMultiplier is
-
+--component that will get the final product 
 component getProd is 
 	port(multiplicand, multiplier: in std_logic_vector(7 downto 0);
 		ld, clr, clk: in std_logic;
@@ -26,6 +26,7 @@ end component;
 signal e: std_logic;
 
 begin 
+
 GP1:	getProd port map(A, B, load, clear, clk, product);
 
 	process(load, clear, clk)
