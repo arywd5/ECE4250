@@ -20,7 +20,9 @@ component andGate is
 end component;
 
 begin 
+	--X xor Y gives the proper Sum bit 
 xor1:	xorGate port map(X, Y, Sum);
+	--X and Y gives the proper Cout bit 
 and1: 	andGate port map(X, Y, Cout);
 
 end behavior;

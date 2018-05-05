@@ -47,15 +47,15 @@ signal suminit: std_logic_vector(2 downto 0);
 signal carries: std_logic_vector(7 downto 0);
 
 	begin 
-	
+	--call 8 bit flip flop for both the multiplier and multiplicand 
 ff0:	dff8bit port map(ld, clr, clk, multiplicand, h0);
 ff1:	dff8bit port map(ld, clr, clk, multiplier, h1);
 	
-		suminit <= h0(1 downto 0) & '0';
-		zero <= "00000000";
+		suminit <= h0(1 downto 0) & '0';	--store the first raddix number to encode 
+		zero <= "00000000";			--store zero here fpr the current sum 
 
-sadd0:	raddixNumbers port map(suminit, h1, hold1, carries(0), carries(1));
-cs0:	configSum port map( hold1, zero, carries(0), carries(1), W, buff(1 downto 0));
+sadd0:	raddixNumbers port map(suminit, h1, hold1, carries(0), carries(1));		--call raddix numbers to get number to add to the current sum
+cs0:	configSum port map( hold1, zero, carries(0), carries(1), W, buff(1 downto 0));	--call configure the sum to add the two and begin storing product 
 
 sadd1:	raddixNumbers port map(h0(3 downto 1), h1, hold2, carries(2), carries(3));
 cs1:	configSum port map (hold2, W, carries(2), carries(3), X, buff(3 downto 2));
@@ -65,7 +65,7 @@ cs2:	configSum port map( hold3, X, carries(4), carries(5), Y, buff(5 downto 4));
 
 sadd3:	raddixNumbers port map(h0(7 downto 5), h1, hold4, carries(6), carries(7)); 
 cs3:	configSum port map( hold4, Y, carries(6), carries(7), buff(15 downto 8), buff(7 downto 6));
-		
+	--call the 16 bit flip flop on the buffer and store this in product 
 ff2:	dff16bit port map('1', clr, clk, buff, prod);
 
 end behavior;

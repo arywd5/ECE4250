@@ -15,7 +15,7 @@ component dff is
 end component;
 
 begin 
-
+		--use the one bit flip flop 8 times to implement the 8 bit flip flop 
 d0:		dff port map(d(0), set, rst, clk, q(0));
 d1:		dff port map(d(1), set, rst, clk, q(1));
 d2:		dff port map(d(2), set, rst, clk, q(2));

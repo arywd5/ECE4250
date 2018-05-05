@@ -23,7 +23,7 @@ end component;
 
 signal hold1, hold2, hold3, hold4: std_logic;
 begin
-
+	--implement the half adder twice to make the full adder 
 HA1:	halfAdder port map(X, Y, hold1, hold2);
 HA2:	halfAdder port map(hold1, Cin, Sum, hold3);
 OR1:	orGate port map(hold2, hold3, Cout);

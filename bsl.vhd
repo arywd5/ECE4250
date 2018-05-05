@@ -15,7 +15,8 @@ component multiplexer is
 end component;
 begin 
 	
-	
+	--use the 2:1 multiplexer to shift left by sending 0 as the select and the bit we want 
+		--in the X option then storing in the output one to the left 
 mux0:	multiplexer port map('0', invec(0), '0', outvec(0));
 mux1:	multiplexer port map(invec(0), invec(1), '0', outvec(1));	
 mux2:	multiplexer port map(invec(1), invec(2), '0', outvec(2));

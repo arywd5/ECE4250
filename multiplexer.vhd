@@ -27,9 +27,9 @@ end component;
 signal snot, hold1, hold2: std_logic;
 begin
 
-invert1: 	notGate port map(sel, snot);
-and1:		andGate port map(snot, X, hold1);
-and2:		andGate port map(sel, Y, hold2);
-or1:		orGate port map(hold1, hold2, Z);
+invert1: 	notGate port map(sel, snot);		--get select not 
+and1:		andGate port map(snot, X, hold1);	--and this and X our first bit 
+and2:		andGate port map(sel, Y, hold2);	--and sel and Y our second bit
+or1:		orGate port map(hold1, hold2, Z);	--or both of these and store in Z
 
 end behavior;

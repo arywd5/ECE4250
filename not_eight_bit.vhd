@@ -2,8 +2,8 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 
 entity not_eight_bit is 
-	port(invec: in std_logic_vector(7 downto 0);
-			outvec: out std_logic_vector(7 downto 0));
+	port(invec: in std_logic_vector(7 downto 0);	--input vector to be inverted 
+			outvec: out std_logic_vector(7 downto 0)); -- inversion of the input 
 end not_eight_bit;
 
 architecture behavior of not_eight_bit is 
@@ -14,7 +14,7 @@ component notGate is
 end component;
 
 	begin 
-
+		--Call Not gate for each bit and store in the output 
 n0:		notGate port map(invec(0), outvec(0));
 n1:		notGate port map(invec(1), outvec(1));
 n2:		notGate port map(invec(2), outvec(2));

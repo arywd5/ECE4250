@@ -18,14 +18,14 @@ end component;
 signal h1, h2, h3, h4, h5, h6: std_logic;
 
 begin
-
-m0:		multiplexer port map(x0, x1, sel(2), h1);
-m1:		multiplexer port map(x2, x3, sel(2), h2);
+		--implement the 2:1 multiplexer seven times to get the 8:1
+m0:		multiplexer port map(x0, x1, sel(2), h1);	--use sel(2) for the 
+m1:		multiplexer port map(x2, x3, sel(2), h2);	--top level 
 m2:		multiplexer port map(x4, x5, sel(2), h3);
 m3:		multiplexer port map(x6, x7, sel(2), h4);
-m4:		multiplexer port map(h1, h2, sel(1), h5);
-m5:		multiplexer port map(h3, h4, sel(1), h6);
-m6:		multiplexer port map(h5, h6, sel(0), out0);
+m4:		multiplexer port map(h1, h2, sel(1), h5);	--then using sel(1) with 
+m5:		multiplexer port map(h3, h4, sel(1), h6);	--the hold variables 
+m6:		multiplexer port map(h5, h6, sel(0), out0);	--finally use sel(0) for the last 2 holds 
 
 
 end behavior;

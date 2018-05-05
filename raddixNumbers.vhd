@@ -2,12 +2,10 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 
 entity raddixNumbers is 
-port(input: in std_logic_vector(2 downto 0);
-		num: in std_logic_vector(7 downto 0);
-		--Sumin: in std_logic_vector(7 downto 0);
-		output: out std_logic_vector(7 downto 0);
-		c0, c1: out std_logic);
---		product: out std_logic_vector(1 downto 0));
+port(input: in std_logic_vector(2 downto 0);		--three numbers to encode from table 
+		num: in std_logic_vector(7 downto 0);	--number that we want to add according to the table 
+		output: out std_logic_vector(7 downto 0);--store output number here 
+		c0, c1: out std_logic);			--output bits 
 end raddixNumbers;
 
 architecture behavior of raddixNumbers is 
@@ -35,15 +33,15 @@ component multiplexerV is
 end component;
 --declare all signals we will need to use 
 signal shiftedNum, notNum, nsn, out0, sum1: std_logic_vector(7 downto 0);
-signal numZero: std_logic_vector(7 downto 0);-- := x"00";
---signal c0, c1, c2, c3,c4: std_logic;
+signal numZero: std_logic_vector(7 downto 0);
 
 	begin 
-		numZero <= "00000000";
-step0:		bsl port map(num, shiftedNum);
-step1:  	not_eight_bit port map(num, notNum);
-step2:		not_eight_bit port map(shiftedNum, nsn);
+		numZero <= "00000000";		--store all zeros in this number 
+step0:		bsl port map(num, shiftedNum);	--shift num left to get 2*num 
+step1:  	not_eight_bit port map(num, notNum);	--invert number for 2's compliment 
+step2:		not_eight_bit port map(shiftedNum, nsn);--invert 2*num for 2's compliment 
 
+		--use the multiplexer to select the proper options using the input vector as the selection bits 
 step3:		multiplexerV port map(numZero, nsn, num, notNum, num, notNum, shiftedNum, numZero, input, output);
 step4:		multiplexer8 port map('0', '1', '0', '1', '0', '1', '0', '0', input, c0);
 step5:		multiplexer8 port map('0', notNum(7), num(7), notNum(7), num(7), notNum(7), num(7), '0', input, c1);

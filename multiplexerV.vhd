@@ -16,7 +16,7 @@ component multiplexer8 is
 end component;
 
 begin 
-
+	--call the 8:1 multiplexer 8 times for each index of the vectors 
 m80:	multiplexer8 port map(y0(0), y1(0), y2(0), y3(0), y4(0), y5(0), y6(0), y7(0), sel, output(0));
 m81:	multiplexer8 port map(y0(1), y1(1), y2(1), y3(1), y4(1), y5(1), y6(1), y7(1), sel, output(1));
 m82:	multiplexer8 port map(y0(2), y1(2), y2(2), y3(2), y4(2), y5(2), y6(2), y7(2), sel, output(2));
